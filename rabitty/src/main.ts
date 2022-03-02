@@ -6,9 +6,10 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
-      transport: Transport.REDIS,
+      transport: Transport.RMQ,
       options: {
-        url: 'redis://localhost:6379',
+        urls: ['amqp://localhost:5672'],
+        queue: 'main_queue',
       },
     },
   );
